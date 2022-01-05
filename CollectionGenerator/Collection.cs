@@ -37,16 +37,15 @@ namespace CollectionGenerator
         {
             SetListRelease(releaseDate, days);
         }
-
         private void SetListRelease(DateTime releaseDate, double days)
         {
             if (days == 0.0)
             {
-                Days = 7.0;
+                days = 7.0;
             }
             else
             {
-                Days = days;
+                days = days;
             }
             DateTime[] listRelease = new DateTime[ItemsSet.Length];
             for (int i = 0; i < ItemsSet.Length; i++)
@@ -71,7 +70,7 @@ namespace CollectionGenerator
             string stringTheme = (Themes).ToString();
 
             StringBuilder sb = new StringBuilder();
-            sb.Append($"Collection: Type: {stringType.Replace("_"," ")}/Theme: {stringTheme.Replace("_", " ")}\n");
+            sb.Append($"Collection: Size: {Size} / Type: {stringType.Replace("_"," ")} / Theme: {stringTheme.Replace("_", " ")}\n");
             for (int i = 0; i < ItemsSet.Length; i++)
             {
                 dateRelease = ReleaseDate[i].ToString();
