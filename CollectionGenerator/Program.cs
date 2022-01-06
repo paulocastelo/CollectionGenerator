@@ -65,22 +65,24 @@ namespace CollectionGenerator
                 Collection generatedCollection = new Collection(sizeCollection, collectionType, collectionTheme, itemsSet, releaseDate, qtDays);
 
                 //Create collection of files
-                var fileName = "CollectionFile.txt";
+                //Console.WriteLine("Input directory for output:");
+                //string path = Console.ReadLine();
+                var fileName = pathFiles + "CollectionFile.txt";
                 ExportCollection(fileName, generatedCollection);
                 Console.WriteLine();
 
 
                 //Get items to selection
-                string[] options = GetOptions(pathFiles, filteredFiles);
+                //string[] options = GetOptions(pathFiles, filteredFiles);
 
                 //Print and select options
-                int option = SelectOption(options);
+                //int option = SelectOption(options);
 
                 //Set parameter to print
-                listName = options[option];
+                //listName = options[option];
 
                 //Print list
-                PrintList(files, listName);
+                //PrintList(files, listName);
 
                 //Generating arrays
             }
@@ -162,35 +164,34 @@ namespace CollectionGenerator
                         }
                     }
 
-                    Console.WriteLine("Do you wish print all items? Y or N");
-                    string answer = Console.ReadLine();
-                    answer = answer.ToUpper();
-                    char opt = 'N';
-                    if (answer.ToUpper() != "Y" && answer.ToUpper() != "N" && answer.ToUpper() != "S")
-                    {
-                        Console.WriteLine("Invalid option!");
-                    }
-                    else
-                    {
-                        opt = char.Parse(answer);
-                    }
-                    Console.WriteLine(opt);
-                    if (opt == 'Y' || opt == 'S')
-                    {
-                        Console.WriteLine("########## START ##########");
+                    //Console.WriteLine("Do you wish print all items? Y or N");
+                    //string answer = Console.ReadLine();
+                    //answer = answer.ToUpper();
+                    //char opt = 'N';
+                    //if (answer.ToUpper() != "Y" && answer.ToUpper() != "N" && answer.ToUpper() != "S")
+                    //{
+                    //    Console.WriteLine("Invalid option!");
+                    //}
+                    //else
+                    //{
+                    //    opt = char.Parse(answer);
+                    //}
+                    //Console.WriteLine(opt);
+                    //if (opt == 'Y' || opt == 'S')
+                    //{
+                    //    Console.WriteLine("########## START ##########");
 
-                        foreach (var item in fileLines)
-                        {
-                            Console.WriteLine(item);
-                        }
-                        Console.WriteLine();
-                        Console.WriteLine("########## FINISH ##########");
-                    }
+                    //    foreach (var item in fileLines)
+                    //    {
+                    //        Console.WriteLine(item);
+                    //    }
+                    //    Console.WriteLine();
+                    //    Console.WriteLine("########## FINISH ##########");
+                    //}
                     foreach (var item in fileLines)
                     {
                         values.Add(item);
                     }
-                    Console.WriteLine();
                 }
                 List<string> newtemp = new List<string>();
                 List<string> temp = new List<string>();
@@ -372,6 +373,7 @@ namespace CollectionGenerator
                 var bytes = encoding.GetBytes(generatedCollection.ToString());
                 fileFill.Write(bytes, 0, bytes.Length);
             }
+            Console.WriteLine("Export finished!");
         }
         private static void ExportList(string path, Collection generatedCollection)
         {
