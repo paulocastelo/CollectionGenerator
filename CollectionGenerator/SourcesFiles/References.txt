@@ -253,3 +253,82 @@ Books
 	* Dystopian
 	* Magical Realism
 	* Realist Literature
+Fashion
+	Pop
+		50s
+		60s
+		70s
+		80s
+		90s
+		2000s
+		2010s
+		2020s
+	Goth
+	Hip-hop
+		The b-boy
+		The black pride
+		The ghetto fabulous
+		The baggy
+		The tattooed
+	Festival
+	Punk
+	Grunge
+	Metal
+		Thrash metal
+		Hair metal
+		Costume metal
+		Nu metal
+		Black metal
+	Rave
+	Hair
+	Music T-shirt
+	Uniform
+	Weird music
+	Youth subcultures
+		Flappers, dandies and Swing Kids
+		The Beat Generation
+		Teddy Boys
+		Rude boys
+		Mods
+		Punks
+		Ravers
+	Late 1940s–mid-1960s
+		Rock and roll
+		Pop rock
+		Instrumental rock
+		Surf music
+	Mid60sLate80s
+		British Invasion
+		Garage rock
+		Blues rock
+		Folk rock
+		Psychedelic rock
+		Progressive rock
+		Jazz rock
+		Roots rock
+		Glam rock
+		Chicano rock
+		Soft rock
+		Hard rock
+		Heavy metal
+		Christian rock
+		Heartland rock
+		Punk rock
+		New wave
+		Post-punk
+		Alternative rock
+	Early90sLate2000s
+		Grunge
+		Britpop
+		Post-grunge
+		Pop punk
+		Indie rock
+		Alternative metal
+		Rap rock
+		Nu metal
+		Post-Britpop
+		Post-hardcore
+		Emo
+		Garage rock
+		Post-punk revival
+		Digital electronic rock
