@@ -20,7 +20,7 @@ namespace CollectionGenerator
             pathFiles = Console.ReadLine();
             if (pathFiles == "")
             {
-                pathFiles = @"C:\Repos\Aulas\CollectionGenerator\CollectionGenerator\SourcesFiles\";
+                pathFiles = @"C:\Repos\projects\CollectionGenerator\CollectionGenerator\SourcesFiles\";
                 //pathFiles = "";
             }
 
