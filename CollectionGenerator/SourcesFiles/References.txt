@@ -1,0 +1,255 @@
+Games
+	* Action
+		# Platform
+		# Shooter
+		# Fighting
+		# Beat 'em up
+		# Stealth game
+		# Survival
+		# Battle Royale
+		# Rhythm
+	* Action-adventure
+		# Survival horror
+		# Metroidvania
+	* Adventure
+		# Text adventures
+		# Graphic adventures
+		# Visual novels
+		# Interactive movie
+		# Real-time 3D adventures
+	* Role-playing
+		# Action RPG
+		# MMORPG
+		# Roguelikes
+		# Tactical RPG
+		# Sandbox RPG
+		# JRPG
+		# Monster Collection
+		# First-person party-based RPG
+	* Simulation
+		# Construction and management simulation
+		# Life simulation
+		# Vehicle simulation
+	* Strategy
+		# 4X game
+		# Artillery game
+		# Auto battler (Auto chess)
+		# Multiplayer online battle arena (MOBA)
+		# Real-time strategy (RTS)
+		# Real-time tactics (RTT)
+		# Tower defense
+		# Turn-based strategy (TBS)
+		# Turn-based tactics (TBT)
+		# Wargame
+		# Grand strategy wargame
+	* Sports
+		# Racing
+		# Sports game
+		# Competitive
+		# Sports-based fighting
+Movies
+	* Action
+		# War and Military
+		# Spy and Espionage
+		# Martial Arts
+		# Western Shoot ‘Em Up
+		# Action Hybrid Genres
+	* Comedy
+		# Slapstick
+		# Screwball
+		# Parody
+		# Black
+	* Drama
+		# Legal
+		# Medical
+		# Melodrama
+		# Political
+		# Docudrama
+		# Teen
+	* Fantasy
+		# Contemporary
+		# Dark
+		# High/epic
+		# Urban
+	* Horror
+		# Zombie Horror
+		# Folk Horror
+		# Body Horror
+		# Found footage
+		# Ghost films
+		# Monster movie
+			- Vampire films
+			- Werewolf films
+		# Slasher film
+		# Splatter film
+		# Zombie film
+	* Mystery
+	* Romance
+		# Historical Romance
+		# Romantic Drama
+		# Romantic Comedy
+		# Chick Flick
+		# Paranormal Romance
+	* Thriller
+		# Conspiracy
+		# Crime
+		# Legal
+		# Spy
+		# Supernatural
+	* Western
+		# Classic Western
+		# The Revisionist and Anti-Western
+		# Contemporary and Neo-Western
+		# Fantasy and Space Western
+		# Modern Western
+	* Sci-Fi
+		# Space Travel
+		# Time Travel
+		# Cerebral Science
+		# Robot and Monster Films
+		# Disaster and Alien Invasion
+	* Historical
+		# Alternate history
+		# Biopic
+		# Historical epic
+		# Historical event
+		# Historical fiction
+		# Period piece
+Comics
+	* Action
+	* Adult
+	* Adventure
+	* Apocalyptic
+	* Autobiographical
+	* Aviation
+	* Biographical
+	* Christmas
+	* Comedy
+	* Crime
+	* Crossover
+	* Detective
+	* Disney
+	* Drama
+	* Dystopian
+	* Educational
+	* Epic
+	* Erotic
+	* Fantasy
+	* Feminist
+	* Historical
+	* Horror
+	* Humor
+	* Jungle
+	* Magical girl
+	* Martial arts
+	* Military
+	* Music-themed
+	* Mystery
+	* Nautical
+	* Neo-noir
+	* Non-fiction
+	* Pantomime
+	* Pirate
+	* Comics about police officers‎
+	* Religious
+	* Romance
+	* School-themed
+	* Science fiction
+	* Slice of life
+	* Comics spin-offs‎
+	* Sports
+	* Spy
+	* Superhero
+	* Teen comedy
+	* Text
+	* Thriller
+	* Western
+	* Workplace
+Cartoon
+	* Animated television series
+	* Anime and manga
+	* Abstract
+	* Action
+	* Adventure
+	* Comedy
+	* Crime
+	* Crossover
+	* Drama
+	* Epic
+	* Fantasy
+	* Historical
+	* Horror
+	* Martial arts
+	* Music-themed
+	* Musical
+	* Mystery
+	* Religious
+	* Romance
+	* School-themed
+	* Science fiction
+	* Sports
+	* Thriller
+	* War
+	* Western
+Series
+	* Action Series
+	* Adventure Series
+	* Animated series
+		# Cartoon series
+	* Anthology series
+	* Art
+	* Children's series
+	* Cooking show
+	* Daytime television
+	* Dramatic programming
+		# Documentary
+		# Docudrama
+		# Dramality
+		# Dramedy
+		# Courtroom drama
+		# Medical Drama
+		# Mockumentary
+	* Educational
+	* Factual television
+		# Instructional
+	* Fantasy
+	* Game Show
+	* Late night television
+	* Music television
+	* News show
+		# Current Affairs
+		# Tabloid television
+	* Police procedural
+	* Detective fiction
+	* Prime-time television
+	* Public affairs (broadcasting)
+	* Reality
+	* Religious
+	* Science fiction
+	* Serial
+	* Comedy
+	* Sitcom
+	* Romcom
+	* Stand-up comedy
+	* Soap opera
+	* Sports
+	* Telenovela
+	* Infomercials
+	* Variety show
+	* Western Series
+		# Space Western
+Books
+	* Literary Fiction
+	* Mystery
+	* Thriller
+	* Horror
+	* Historical
+	* Romance
+	* Western
+	* Bildungsroman
+	* Speculative Fiction
+	* Science Fiction
+	* Fantasy
+	* Dystopian
+	* Magical Realism
+	* Realist Literature

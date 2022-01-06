@@ -44,9 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Collection.cs" />
-    <Compile Include="Enums\References.cs" />
-    <Compile Include="Enums\Themes.cs" />
-    <Compile Include="Enums\Types.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

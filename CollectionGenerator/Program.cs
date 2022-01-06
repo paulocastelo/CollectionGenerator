@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using CollectionGenerator.Enums;
 
 namespace CollectionGenerator
 {
@@ -22,63 +21,233 @@ namespace CollectionGenerator
             if (pathFiles == "")
             {
                 pathFiles = @"C:\Repos\Aulas\CollectionGenerator\CollectionGenerator\SourcesFiles\";
+                //pathFiles = "";
             }
 
-            //Get list of files
-            var filteredFiles = Directory
-                .GetFiles(pathFiles, "*.*")
-                .ToList();
+            //Check if directory exists
+            var di = new DirectoryInfo(pathFiles);
+            if (pathFiles != null && pathFiles != "" && di.Exists == true)
+            {
+                //Get list of files
+                var filteredFiles = Directory
+                        .GetFiles(pathFiles, "*.*")
+                        .ToList();
 
-            //Create array from files
-            List<string>[] files = new List<string>[filteredFiles.Count];
+
+                List<string>[] files = ListFromFiles(pathFiles, filteredFiles);
+
+                //Get type item from list
+                string listName = string.Empty;
+                listName = "Types";
+                string collectionType = GetRandomItem(files, listName);
+
+                //Get theme item from list
+                listName = "Themes";
+                string collectionTheme = GetRandomItem(files, listName);
+
+                //Select references to compose collection item
+                listName = "References";
+                //Parameters for randomic generating list
+                int randomStart = 15;
+                int randomEnd = 42;
+                int qtItemAttributes = 9;
+                int sizeCollection = SetRandom(randomStart, randomEnd);
+                Item[] itemsSet = new Item[sizeCollection];
+                DateTime releaseDate = DateTime.Now;
+                double qtDays = 3.0;
+                List<string> fileContent = GetFileContent(files, listName);
+
+                //Set start and end to random items
+                int startCollection = 1;
+                int EndCollection = fileContent.Count;
+                GenerateCollection(startCollection, EndCollection, sizeCollection, qtItemAttributes, itemsSet, fileContent);
+
+                Collection generatedCollection = new Collection(sizeCollection, collectionType, collectionTheme, itemsSet, releaseDate, qtDays);
+
+                //Create collection of files
+                var fileName = "CollectionFile.txt";
+                ExportCollection(fileName, generatedCollection);
+                Console.WriteLine();
+
+
+                //Get items to selection
+                string[] options = GetOptions(pathFiles, filteredFiles);
+
+                //Print and select options
+                int option = SelectOption(options);
+
+                //Set parameter to print
+                listName = options[option];
+
+                //Print list
+                PrintList(files, listName);
+
+                //Generating arrays
+            }
+            else
+            {
+                Console.WriteLine("Invalid directory!");
+            }
+
+            Console.ReadKey();
+        }
+
+        private static List<string>[] ListFromFiles(string pathFiles, List<string> filteredFiles)
+        {
+            //Create arrayList from files
+            List<string>[] newFiles = new List<string>[filteredFiles.Count];
 
             //Create list with file content
             for (int i = 0; i < filteredFiles.Count; i++)
             {
-                //Create string list
-                List<string>values = new List<string>();
-                
+                //Creat string list for all items 
+                List<string> fileLines = new List<string>();
+
+                //Create string list for transformed items
+                List<string> values = new List<string>();
+
                 //Inserts first element with filename
-                string arrayName = (filteredFiles[i].Replace(pathFiles, "").Replace(".txt", ""));
-                values.Add($"List: {arrayName}");
-                
+                string arrayName = filteredFiles[i].Replace(pathFiles, "").Replace(".txt", "");
+
+                //Create List to get item by tab number
+                int maxTabOccurence = 10;
+                List<string>[] itemByTabNumber = new List<string>[maxTabOccurence];
+
                 //Open file method
                 using (var fileStream = new FileStream(filteredFiles[i], FileMode.Open))
                 using (var streamReader = new StreamReader(fileStream))
                 {
+                    //Incremental int to tab occurrences
+                    int nTab = 0;
+
+                    //Create all necessary list
+                    for (int xy = 0; xy < itemByTabNumber.Length; xy++)
+                    {
+                        itemByTabNumber[xy] = new List<string>();
+                    }
+
+                    //ETL from file content
                     while (!streamReader.EndOfStream)
                     {
-                        values.Add(streamReader.ReadLine());
-                    }
-                }
-                files[i] = values;
-            }
+                        //Read line and replace special characters
+                        string line = streamReader.ReadLine()
+                                    .Replace("# ", "")
+                                    .Replace("- ", "")
+                                    .Replace("' ", "")
+                                    .Replace("* ", "");
 
-            //Get random item
-            int indexRandom;
-            string itemRandomValue;
-            string listName = "Types";
-            for (int i = 0; i < files.Length; i++)
-            {
-                List<string> list = files[i];
-                for (int j = 0; j < list.Count; j++)
-                {
-                    if (list.Contains($"List: {listName}"))
+                        //Set number of tabs
+                        nTab = line.Count(t => t == '\t');
+
+                        //Read previous super types
+                        string prevValue = "";
+                        string value = "";
+                        if (nTab != 0)
+                        {
+                            prevValue = itemByTabNumber[nTab - 1].Last();
+                            value = $"{prevValue} : [{line}]".Replace("\t", "");
+                        }
+                        else
+                        {
+                            value = $"[{line}]".Replace("\t", "");
+                        }
+                        itemByTabNumber[nTab].Add(value);
+
+                    }
+                    for (int it = 0; it < itemByTabNumber.Length; it++)
                     {
-                        indexRandom = randomValue.Next(list.Count);
-                        itemRandomValue = list[indexRandom];
-                        Console.WriteLine(itemRandomValue);
-                        
-                        //foreach (var item in files[i])
-                        //{
-                        //    Console.WriteLine(item);
-                        //}
-                        Console.WriteLine();
-                        break;
+                        foreach (var item in itemByTabNumber[it])
+                        {
+                            fileLines.Add(item);
+                        }
                     }
+
+                    Console.WriteLine("Do you wish print all items? Y or N");
+                    string answer = Console.ReadLine();
+                    answer = answer.ToUpper();
+                    char opt = 'N';
+                    if (answer.ToUpper() != "Y" && answer.ToUpper() != "N" && answer.ToUpper() != "S")
+                    {
+                        Console.WriteLine("Invalid option!");
+                    }
+                    else
+                    {
+                        opt = char.Parse(answer);
+                    }
+                    Console.WriteLine(opt);
+                    if (opt == 'Y' || opt == 'S')
+                    {
+                        Console.WriteLine("########## START ##########");
+
+                        foreach (var item in fileLines)
+                        {
+                            Console.WriteLine(item);
+                        }
+                        Console.WriteLine();
+                        Console.WriteLine("########## FINISH ##########");
+                    }
+                    foreach (var item in fileLines)
+                    {
+                        values.Add(item);
+                    }
+                    Console.WriteLine();
                 }
+                List<string> newtemp = new List<string>();
+                List<string> temp = new List<string>();
+                foreach (var item in values)
+                {
+                    temp.Add(item);
+                }
+                temp.Sort();
+                newtemp.Add($"List: {arrayName}");
+                foreach (var item in temp)
+                {
+                    newtemp.Add(item);
+                }
+                newFiles[i] = newtemp;
+            }
+            return newFiles;
+        }
+
+        private static string[] GetOptions(string pathFiles, List<string> filteredFiles)
+        {
+            //Set options to select
+            string[] options = new string[filteredFiles.Count];
+            for (int i = 0; i < options.Length; i++)
+            {
+                options[i] = filteredFiles[i].Replace(pathFiles, "").Replace(".txt", "");
             }
 
+            return options;
+        }
+
+        private static int SelectOption(string[] options)
+        {
+            int option = 0;
+            int value = 0;
+            while (value == 0)
+            {
+                Console.WriteLine("Select list to print:");
+                for (int i = 0; i < options.Length; i++)
+                {
+                    Console.WriteLine($"Input {i + 1} for {options[i]}");
+                }
+
+                //Input option
+                string inputedOption = Console.ReadLine();
+                if (int.TryParse(inputedOption, out value))
+                {
+                    option = value - 1;
+                }
+                if (value == 0)
+                    Console.WriteLine("Invalid value!\n");
+            }
+
+            return option;
+        }
+
+        private static void PrintList(List<string>[] files, string listName)
+        {
             //Print list
             for (int i = 0; i < files.Length; i++)
             {
@@ -96,102 +265,115 @@ namespace CollectionGenerator
                     }
                 }
             }
-
-            //Generating arrays
-
-
-
-            Console.ReadKey();
         }
 
-        private static void Retornar()
+        private static string GetRandomItem(List<string>[] files, string listName)
         {
-            DateTime release;
-            Console.WriteLine("Input first release date:");
-            string inputLine = Console.ReadLine();
-            if (inputLine == "")
+            //Get random item
+            int indexRandom;
+            string itemRandomValue = string.Empty;
+            for (int i = 0; i < files.Length; i++)
             {
-                release = DateTime.Now;
+                List<string> list = files[i];
+                for (int j = 0; j < list.Count; j++)
+                {
+                    if (list.Contains($"List: {listName}"))
+                    {
+                        indexRandom = randomValue.Next(list.Count);
+                        itemRandomValue = list[indexRandom];
+                        break;
+                    }
+                }
             }
-            else
+            return itemRandomValue;
+        }
+        private static List<string> GetFileContent(List<string>[] files, string listName)
+        {
+            //Get random item
+            List<string> resultList = new List<string>();
+            for (int i = 0; i < files.Length; i++)
             {
-                release = DateTime.Parse(inputLine);
+                List<string> list = files[i];
+                for (int j = 0; j < list.Count; j++)
+                {
+                    if (list.Contains($"List: {listName}"))
+                    {
+                        foreach (var item in list)
+                        {
+                            resultList.Add(item);
+                        }
+                        break;
+                    }
+                }
             }
-            //Setting item name
-            var nameItem = "Collection";
-            int start = 15;
-            int end = 42;
-            // Case start = 0 or end = 0, it prompt shows
-            int sizeCollection = SetRandom(start, end);
-            Console.WriteLine($"Valores selecionados para {nameItem}: \nValor: {sizeCollection}.");
-            Console.WriteLine();
-
-            //Initial parameters
-
-            //Types
-            start = 1;
-            nameItem = "Types";
-            end = (int)Enum.GetValues(typeof(Types)).Cast<Types>().Last();
-            int typeInt = SetRandom(start, end);
-            Types typeEnum = (Types)typeInt;
-            Console.WriteLine($"Valores selecionados para {nameItem}: \nValor: {typeInt}.");
-            Console.WriteLine();
-
-            //Themes
-            nameItem = "Themes";
-            start = 1;
-            end = (int)Enum.GetValues(typeof(Themes)).Cast<Themes>().Last(); ;
-            int themesInt = SetRandom(start, end);
-            Themes themeEnum = (Themes)themesInt;
-            Console.WriteLine($"Valores selecionados para {nameItem}: \nValor: {themesInt}.");
-            Console.WriteLine();
-
-            //Setting Collection
-            int itemRef = 9;
-            start = 1;
-            end = (int)Enum.GetValues(typeof(References)).Cast<References>().Last();
-
-            //Set items collection
-            Item[] itemsSet = new Item[sizeCollection];
-            GenerateCollection(release, start, end, sizeCollection, itemRef, itemsSet);
-
-            //Set collection
-            Collection generatedCollection = new Collection(sizeCollection, typeEnum, themeEnum, itemsSet, release);
-
-            var fileName = "CollectionFile.txt";
-            CreateFile(fileName, generatedCollection);
-            Console.WriteLine();
-
-            Console.WriteLine("Generating file:");
-            Console.WriteLine(generatedCollection);
-
-            Console.WriteLine();
+            return resultList;
         }
 
-        private static void GenerateCollection(DateTime release, int start, int end, int sizeCollection, int itemRef, Item[] itemsSet)
+        //private static List<string>[] ArrayListFromFiles(string pathFiles, List<string> filteredFiles)
+        //{
+        //    //Create arrayList from files
+        //    List<string>[] files = new List<string>[filteredFiles.Count];
+
+        //    //Create list with file content
+        //    for (int i = 0; i < filteredFiles.Count; i++)
+        //    {
+        //        //Create string list
+        //        List<string> values = new List<string>();
+
+        //        //Inserts first element with filename
+        //        string arrayName = filteredFiles[i].Replace(pathFiles, "").Replace(".txt", "");
+        //        values.Add($"List: {arrayName}");
+
+        //        //Open file method
+        //        using (var fileStream = new FileStream(filteredFiles[i], FileMode.Open))
+        //        using (var streamReader = new StreamReader(fileStream))
+        //        {
+        //            while (!streamReader.EndOfStream)
+        //            {
+        //                values.Add(streamReader.ReadLine());
+        //            }
+        //        }
+        //        files[i] = values;
+        //    }
+
+        //    return files;
+        //}
+
+        private static void GenerateCollection(int start, int end, int sizeCollection, int qtItemAttributes, Item[] itemsSet, List<string> fileContent)
         {
             int index = 1;
             for (int i = 0; i < sizeCollection; i++)
             {
                 //Creation of nested array: item and references
-                int[] refs = new int[itemRef];
-                for (int j = 0; j < itemRef; j++)
+                List<string> refsInt = new List<string>();
+                for (int j = 0; j < qtItemAttributes; j++)
                 {
                     if (j == 0)
                     {
-                        refs[j] = index++;
+                        refsInt.Add(index++.ToString());
                     }
                     else
                     {
-                        refs[j] = SetRandom(start, end);
+                        int randomNumber = SetRandom(start, end);
+                        refsInt.Add(fileContent[randomNumber]);
                     }
                 }
                 //Set item object
-                itemsSet[i] = new Item(refs, release);
+                itemsSet[i] = new Item(refsInt);
             }
         }
 
-        private static void CreateFile(string path, Collection generatedCollection)
+        private static void ExportCollection(string path, Collection generatedCollection)
+        {
+            var newPath = path;
+            using (var fileFill = new FileStream(newPath, FileMode.Create))
+            {
+                var encoding = Encoding.UTF8;
+                var bytes = encoding.GetBytes(generatedCollection.ToString());
+                fileFill.Write(bytes, 0, bytes.Length);
+            }
+        }
+        private static void ExportList(string path, Collection generatedCollection)
         {
             var newPath = path;
             using (var fileFill = new FileStream(newPath, FileMode.Create))
