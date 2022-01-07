@@ -193,13 +193,13 @@ namespace CollectionGenerator
                         values.Add(item);
                     }
                 }
+                ISet<string> temp = new SortedSet<string>();
                 List<string> newtemp = new List<string>();
-                List<string> temp = new List<string>();
                 foreach (var item in values)
                 {
                     temp.Add(item);
                 }
-                temp.Sort();
+                //temp.Sort();
                 newtemp.Add($"List: {arrayName}");
                 foreach (var item in temp)
                 {
